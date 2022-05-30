@@ -1,51 +1,36 @@
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
-const api = "2c5b9238c69ab8caead4ac1eaebe1cb0";
-const lat = 39.3318
-const long = -82.9817
-
-
-let forecastList = [];
-
 const button = document.querySelector("#button");
+const baseURL = "https://api.openweathermap.org/data/2.5/weather?lat=39.3318&lon=-82.9817&appid=2c5b9238c69ab8caead4ac1eaebe1cb0&units=imperial"
 
 button.addEventListener('click', () => {
-    let url = weatherUrl;
-    let apiKey = api
-    findWeather(`${url}lat=${lat}&lon=${long}&appid=${apiKey}`);
+    findWeather(baseURL);
 });
-
 
 async function findWeather(URL) {
     let response = await fetch(URL);
     if (response.ok) {
-        console.log(response)
-        let forecastList = await response.json();
-        output(forecastList);
-
+        let forecast = await response.json();
+        console.log(response);
+        // output(forecast);
     }
 };
-findWeather();
 
-const output = (weather) => {
-   weather.forEach(
-       city => {
-            let article = document.createElement("article");
 
-            let temp = document.createElement("h3")
-            temp.textContent = weather.main.temp;
+const output = (Weather) => {
+    let article = document.createElement("article");
 
-            let humidity = document.createElement("p")
-            humidity.textContent = weather.main.humidity;
+    let temp = document.createElement("h3")
+    temp.textContent = Weather.temp;
 
-            let wind_speed = document.createElement("p")
-            wind_speed.textContent = weather.wind.speed;
+    let humidity = document.createElement("p")
+    humidity.textContent = Weather.main.humidity;
 
-            article.appendChild(temp);
-            article.appendChild(humidity);
-            article.appendChild(wind_speed);
-       }
-   );
-}
+    let wind_speed = document.createElement("p")
+    wind_speed.textContent = Weather.wind.speed;
+
+    article.appendChild(temp);
+    article.appendChild(humidity);
+    article.appendChild(wind_speed);
+};
 
 
 let date = new Date().getDay();
