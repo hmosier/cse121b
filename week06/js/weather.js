@@ -16,18 +16,30 @@ async function findWeather(URL) {
 
 
 const output = (weather) => {
-    let article = document.createElement("article");
+    let article = document.getElementById("weathergoeshere")
 
-    let temp = document.createElement("h3")
-    temp.textContent = weather.main.temp;
+    let temperature = document.createElement("h3")
+    temperature.textContent = `Current Temperature: ${weather.main.temp} F`;
+
+    let feelsLike = document.createElement("p")
+    feelsLike.textContent = `Feels like: ${weather.main.feels_like} F`;
+
+    let tempMax = document.createElement("p")
+    tempMax.textContent = `Today's High: ${weather.main.temp_max} F`;
+
+    let tempMin = document.createElement("p")
+    tempMin.textContent = `Today's Low: ${weather.main.temp_min} F`;
 
     let humidity = document.createElement("p")
-    humidity.textContent = weather.main.humidity;
+    humidity.textContent = `Relative Humidity: ${weather.main.humidity}%`;
 
     let wind_speed = document.createElement("p")
-    wind_speed.textContent = weather.wind.speed;
+    wind_speed.textContent = `Wind Speed: ${weather.wind.speed} mph`;
 
-    article.appendChild(temp);
+    article.appendChild(temperature);
+    article.appendChild(feelsLike);
+    article.appendChild(tempMax);
+    article.appendChild(tempMin);
     article.appendChild(humidity);
     article.appendChild(wind_speed);
 };
