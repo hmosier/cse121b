@@ -19,7 +19,7 @@ const output = (Weather) => {
     let article = document.createElement("article");
 
     let temp = document.createElement("h3")
-    temp.textContent = Weather.temp;
+    temp.textContent = Weather.main.temp;
 
     let humidity = document.createElement("p")
     humidity.textContent = Weather.main.humidity;
