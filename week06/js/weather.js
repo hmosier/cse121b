@@ -9,23 +9,23 @@ async function findWeather(URL) {
     let response = await fetch(URL);
     if (response.ok) {
         let forecast = await response.json();
-        console.log(response);
-        // output(forecast);
+        // console.log(forecast);
+        output(forecast);
     }
 };
 
 
-const output = (Weather) => {
+const output = (weather) => {
     let article = document.createElement("article");
 
     let temp = document.createElement("h3")
-    temp.textContent = Weather.main.temp;
+    temp.textContent = weather.main.temp;
 
     let humidity = document.createElement("p")
-    humidity.textContent = Weather.main.humidity;
+    humidity.textContent = weather.main.humidity;
 
     let wind_speed = document.createElement("p")
-    wind_speed.textContent = Weather.wind.speed;
+    wind_speed.textContent = weather.wind.speed;
 
     article.appendChild(temp);
     article.appendChild(humidity);
