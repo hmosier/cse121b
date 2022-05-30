@@ -1,31 +1,31 @@
 const button = document.querySelector("#button");
-const baseURL = "https://api.openweathermap.org/data/2.5/weather?lat=39.3318&lon=-82.9817&appid=2c5b9238c69ab8caead4ac1eaebe1cb0"
+const baseURL = "https://api.openweathermap.org/data/2.5/weather?lat=39.3318&lon=-82.9817&appid=2c5b9238c69ab8caead4ac1eaebe1cb0&units=imperial"
 
 button.addEventListener('click', () => {
-    weather(baseURL);
+    findWeather(baseURL);
 });
 
-async function weather(URL) {
+async function findWeather(URL) {
     let response = await fetch(URL);
     if (response.ok) {
         let forecast = await response.json();
         console.log(response);
-        output(forecast);
+        // output(forecast);
     }
 };
 
 
-const output = (weather) => {
+const output = (Weather) => {
     let article = document.createElement("article");
 
     let temp = document.createElement("h3")
-    temp.textContent = weather.main.temp;
+    temp.textContent = Weather.temp;
 
     let humidity = document.createElement("p")
-    humidity.textContent = weather.main.humidity;
+    humidity.textContent = Weather.main.humidity;
 
     let wind_speed = document.createElement("p")
-    wind_speed.textContent = weather.wind.speed;
+    wind_speed.textContent = Weather.wind.speed;
 
     article.appendChild(temp);
     article.appendChild(humidity);
